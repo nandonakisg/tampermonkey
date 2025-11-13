@@ -1,4 +1,4 @@
-// ==UserScript==
+﻿// ==UserScript==
 // @name         Claude Table BR fix
 // @namespace    https://github.com/nandonakisg
 // @version      1.0
