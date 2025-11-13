@@ -101,10 +101,15 @@
 
 		mealHeaders.forEach(header => {
 			const foodRows = [];
+			let quickToolsRow = null;
 			let currentRow = header.nextElementSibling;
 
 			while (currentRow && !currentRow.classList.contains('meal_header')) {
-				if (currentRow.cells && currentRow.cells.length > indices.proteinRatioIndex) {
+				const hasAddFoodLink = currentRow.querySelector('.add_food');
+
+				if (hasAddFoodLink) {
+					quickToolsRow = currentRow;
+				} else if (currentRow.cells && currentRow.cells.length > indices.proteinRatioIndex) {
 					const ratioCell = currentRow.cells[indices.proteinRatioIndex];
 					const ratioText = ratioCell.textContent.trim();
 					const ratio = parseInt(ratioText);
@@ -124,6 +129,10 @@
 					insertAfter.parentNode.insertBefore(item.row, insertAfter.nextSibling);
 					insertAfter = item.row;
 				});
+
+				if (quickToolsRow) {
+					insertAfter.parentNode.insertBefore(quickToolsRow, insertAfter.nextSibling);
+				}
 			}
 		});
 	}
